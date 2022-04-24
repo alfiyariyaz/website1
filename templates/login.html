@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'website.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div id="login1">
+    <form method="post" action="login">
+        {% csrf_token %}
+        <input class="input" type="text" name="username" placeholder="Username" required>
+        <input class="input" type="password" name="password" placeholder="password" required>
+        <input id="loginbutton" type="submit" value="Login">
+       <a href="{% url 'register' %}"> <input id="loginbutton" type="button" value="Register">
+    </form>
+    </div>
+    <div id="message">
+        {% for i in messages %}
+        <p>{{i}}</p>
+
+        {% endfor %}
+    </div>
+</body>
+</html>

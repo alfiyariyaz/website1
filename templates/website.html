@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'website.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div id="header">
+        <h1 id="heading">WEBSITE</h1>
+        <form id="form" method="post" action="searching">
+            {% csrf_token %}
+           <input id="search" type="text" name="Search" placeholder="Search..">
+            <input  id="submit" type="submit" value="Search">
+        
+        </form>
+        {% if user.is_authenticated %}
+        <h6 id="user-name">{{user.username}}</h6>
+        <a href="{% url 'logout' %}"><button class="log">Logout</button></a>
+        {% else %}
+       <a href="{% url 'login' %}">
+        <button class="log">Login</button>
+        </a>
+        {% endif %}
+    
+        
+
+    </div>
+    {% block content %}
+    <div id="body">
+        {% for i in data %}
+       <a href="{% url 'newfun' cardid=i.id %}"> <div class="box">
+            <img src="{{i.image.url}}">
+            <h2>{{i.name}}</h2>
+            <h1>{{i.price}}RS</h1>
+
+        </div></a>
+        {% endfor %}
+        
+    </div>
+    {% endblock %}
+</body>
+</html>

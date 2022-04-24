@@ -1,0 +1,21 @@
+
+{% extends 'website.html' %}
+{% load static %}
+{% block content %}
+
+<div>
+    
+    <div id="image">
+        <img src="{{data.image.url}}">
+        
+    </div>
+    <div id="maindiv">
+        <h2>{{data.name}}</h2>
+        <h1>{{data.price}}RS</h1>
+        <p>{{data.description}}</p>
+        <input type="button" value="Buy">
+    </div>
+
+</div>
+
+{% endblock %}
